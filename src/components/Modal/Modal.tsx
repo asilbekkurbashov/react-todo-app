@@ -11,8 +11,8 @@ import {
   Checkbox,
   message,
 } from "antd";
-
-import { I_Todo, setTodos, editTodo } from "../../state/todosSlice/Todos";
+// editTodo
+import { I_Todo, setTodos } from "../../state/todosSlice/Todos";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useAppContext } from "../../hooks/useAppContext";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { todos ,setPending ,deletePending} = useAppSelector((state) => state.TodoReducer);
+  const { setPending ,deletePending} = useAppSelector((state) => state.TodoReducer);
   const { isModalOpen, setIsModalOpen, editID } = useAppContext();
 
   const handleCancel = () => {

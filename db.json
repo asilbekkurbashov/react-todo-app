@@ -1,21 +1,13 @@
 {
   "todo": [
     {
-      "title": "aqildos",
-      "date": "2023-11-09",
-      "description": "aaaaaaa",
-      "directory": "music",
-      "important": true,
-      "completed": true,
-      "id": "c5e4b7c4-9b35-47a1-ad1f-8b4cd5882f8a"
-    },
-    {
       "title": "Asilbek",
-      "date": "2023-11-07",
+      "date": "2023-11-08",
       "description": "kurbashov",
       "directory": "music",
       "important": true,
-      "id": "f42688fd-bcd7-4263-990b-d86e836c791b"
+      "completed": true,
+      "id": "5eb38f65-444b-495d-80cf-726085778fc3"
     }
   ]
 }

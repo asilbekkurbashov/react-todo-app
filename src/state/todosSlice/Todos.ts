@@ -20,7 +20,6 @@ export const setTodos = createAsyncThunk<undefined, I_Todo>(
   async (body, {rejectWithValue,dispatch}) => {
     try {
       const response = await axios.post("http://localhost:3000/todo", body)
-      console.log(body);
       
       if(response.status === 201){
         dispatch(TodoActions.setTodosAdd(body))
