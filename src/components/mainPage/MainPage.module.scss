@@ -1,0 +1,167 @@
+@import "../../styles/var.scss";
+
+//main page
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: auto;
+  min-height: 100vh;
+  background-color: var(--main-bg-default);
+  padding: 20px;
+  box-shadow: inset 3px 0px 50px -20px rgba(0, 0, 0, 0.5);
+}
+
+//header
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-items: center;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border-default);
+  background-color: var(--menu-bg-default);
+  border-radius: 8px;
+  padding: 0px 5px;
+  width: 300px;
+  cursor: pointer;
+  transition: border 200ms;
+  &:hover {
+    border: 1px solid var(--add-button);
+  }
+
+  input {
+    border: none;
+    width: 90%;
+    background-color: transparent;
+    outline: none;
+    font-size: 18px;
+    padding: 10px 4px 10px 5px;
+    color: var(--major-text-default);
+  }
+
+  svg {
+    font-size: 24px;
+    color: var(--major-text-default);
+  }
+}
+
+.main {
+  position: relative;
+  min-height: 80vh;
+  padding-bottom: 60px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  color: var(--major-text-default);
+}
+
+.headerBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.uncompleted {
+  display: flex;
+  position: relative;
+  color: var(--add-button);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.langBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.countOfUncompleted {
+  position: absolute;
+  font-size: 14px;
+  top: -10px;
+  right: -5px;
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  padding: 1px 5px;
+}
+
+.currentLang {
+  span {
+    padding-right: 0 !important;
+  }
+}
+
+//footer
+.footer {
+  position: absolute;
+  bottom: 20px;
+  border: none;
+  border-radius: 20px;
+  left: 10px;
+  right: 10px;
+  padding: 8px;
+  color: var(--major-text-default);
+  background-color: var(--menu-bg-default);
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+// hamburger
+.hamburger, .avatar{
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: var(--major-text-default);
+}
+
+.todo_list{
+  display: none;
+  font-size: 14px;
+}
+
+.search_phone_device {
+  display:none;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.add_task_phone {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: var(--add-button);
+  font-size: 26px;
+  border-radius: 50%;
+  position: absolute;
+  padding: 3px 4px;
+  bottom: 40px;
+  cursor: pointer;
+  right: 20px;
+}
+
+@media (max-width:  1200px){
+  .hamburger, .avatar, .todo_list, .search_phone_device, .add_task_phone {
+    display: flex;
+    align-items: center;
+  }
+
+  .search_laptop {
+    display: none;
+  }
+}

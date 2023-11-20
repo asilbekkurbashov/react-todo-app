@@ -1,0 +1,21 @@
+.btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: opacity 200ms;
+
+    &:hover {
+        opacity: .9;
+    }
+
+    &.completed {
+        background-color: #a7f3d0;
+    }
+
+    &.uncompleted {
+        background-color: #fde68a;
+    }
+}

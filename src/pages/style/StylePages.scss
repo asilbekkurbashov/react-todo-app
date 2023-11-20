@@ -1,0 +1,113 @@
+@import '../../styles/var.scss';
+@import '../../styles/var.scss';
+
+section {
+    position: relative;
+    margin-top: 40px;
+    min-height: 700px;
+
+    .page{
+        font-size: 30px;
+        color: var(--text-default);
+        margin-bottom: 30px;
+    }
+}
+
+.noTodo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    opacity: .3;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: var(--text-default);
+}
+
+.todos {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(302px, 1fr));
+}
+
+.todo {
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: var(--menu-bg-default);
+    position: relative;
+    max-width: 547px;
+}
+
+.directory {
+    position: absolute;
+    top: -10px;
+    right:20px;
+    background-color: var(--directory-bg-default);
+    color: var(--directory-text-default);
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-default);
+}
+
+.text {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: var(--major-text-default);
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    color: var(--major-text-default);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px dashed var(--major-text-default);
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rightOption {
+    font-size: 26px;
+    color: var(--major-text-default);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    span:hover {
+        cursor: pointer;
+    }
+
+    span.important{
+        color: red;
+    }
+}
+
+.not {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-default);
+
+    p{
+        font-size: 60px;
+        opacity: .3;
+    }
+}

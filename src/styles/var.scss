@@ -1,0 +1,72 @@
+$menu-bg-light: #ffffff;
+$menu-bg-dark: #141e33;
+
+$major-text-light:#475569;
+$major-text-dark:#94a3b8;
+
+$range-bg-light:#e2e8f0;
+$range-bg-dark:#1A253A;
+
+$directory-bg-light:#ffe4e6;
+$directory-bg-dark:#1A253A;
+
+$directory-text-light:#e11d48;
+$directory-text-dark:#fff;
+
+$main-bg-light:#f1f5f9;
+$main-bg-dark:#0f172a;
+
+$text-light:#475569;
+$text-dark:#fff;
+
+$li-active-bg-light:#EDE9FE;
+$li-active-bg-dark:#1A253A;
+
+$modal-text-light: #6D5580;
+$modal-text-dark: #94a3b8;
+
+
+:root {
+    --add-button:#5b21b6;
+
+    --menu-bg-light: #{$menu-bg-light};
+    --menu-bg-dark: #{$menu-bg-dark};
+    --menu-bg-default: var(--menu-bg-light);
+
+    --major-text-light:#{$major-text-light};
+    --major-text-dark:#{$major-text-dark};
+    --major-text-default: var(--major-text-light);
+
+    --range-bg-light:#{$range-bg-light};
+    --range-bg-dark:#{$range-bg-dark};
+    --range-bg-default:var(--range-bg-light);
+
+    --directory-bg-light:#{$directory-bg-light};
+    --directory-bg-dark:#{$directory-bg-dark};
+    --directory-bg-default: var(--directory-bg-light);
+
+    --directory-text-light:#{$directory-text-light};
+    --directory-text-dark:#{$directory-text-dark};
+    --directory-text-default: var(--directory-text-light);
+
+    --main-bg-light:#{$main-bg-light};
+    --main-bg-dark:#{$main-bg-dark};
+    --main-bg-default: var(--main-bg-light);
+
+    --border-light:#d9d9d9;
+    --border-dark:#{$text-dark};
+    --border-default: var(--border-light);
+
+    --li-active-bg-light: #{$li-active-bg-light};
+    --li-active-bg-dark: #{$li-active-bg-dark};
+    --li-active-bg-default: var(--li-active-bg-light);
+
+    --text-light:#{$text-light};
+    --text-dark:#{$text-dark};
+    --text-default: var(--text-light);
+
+    --modal-text-light: #{$modal-text-light};
+    --modal-text-dark: #{$modal-text-dark};
+    --modal-text-default: var(--modal-text-light);
+
+}
