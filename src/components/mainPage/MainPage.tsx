@@ -2,6 +2,7 @@
 import styles from "./MainPage.module.scss";
 import { Select, Popover } from "antd";
 import { Outlet } from "react-router-dom";
+import {time} from '../UI/data/data'
 
 //icons
 import { MdOutlineSearch } from "react-icons/md";
@@ -14,25 +15,6 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import { GoPlus } from "react-icons/go";
 
 function MainPage() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const day = date.getDate();
-  const month = date.getMonth();
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
   const { todos } = useAppSelector((state) => state.TodoReducer);
   const dataLength = todos.filter((elem) => !elem.completed);
   const { t, i18n } = useTranslation();
@@ -74,7 +56,7 @@ function MainPage() {
             <h2>{t("TO-DO LIST")}</h2>
           </div>
           <p>
-            {year}, {months[month]} {day}
+            {time()}
           </p>
         </div>
         <div className={styles.headerBlock}>

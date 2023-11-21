@@ -114,9 +114,12 @@ section {
 
 @media (max-width: 700px){
     .page {
-        font-size: 20px;
+        font-size: 24px !important;
+    }
+    .not p {
+        font-size: 34px;
     }
     .noTodo {
-        font-size: 26px;
+        font-size: 34px;
     }
 }
