@@ -1,16 +1,17 @@
 import styles from './Button.module.scss'
 import { clsx } from '../../helper/clsx'
+import React,{ButtonHTMLAttributes} from 'react'
 
-interface Props{
-    children: React.ReactNode
-    type?: 'completed' | 'uncompleted' 
+interface I_Props extends ButtonHTMLAttributes<HTMLButtonElement>{
+    children: React.ReactNode;
+    type_btn?: 'completed' | 'uncompleted';
 }
 
-function Button(props: Props) {
-    const {children, type ='', ...otherProps} = props
+function Button(props: I_Props) {
+    const {children, type_btn ='', ...otherProps} = props
 
     const mods = {
-      [styles[type]] : true
+      [styles[type_btn]] : true
     }
 
   return (

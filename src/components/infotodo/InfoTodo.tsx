@@ -68,7 +68,7 @@ function InfoTodo(props: Props) {
           <div className="option">
             <Button
               onClick={() => toggleCom(elem)}
-              type={elem.completed ? "completed" : "uncompleted"}
+              type_btn={elem.completed ? "completed" : "uncompleted"}
             >
               {elem.completed ? t("completed") : t("uncompleted")}
             </Button>

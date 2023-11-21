@@ -40,7 +40,7 @@ function MainPage() {
     i18n.changeLanguage(value);
   };
 
-  const { search, setSearch, showModal } = useAppContext();
+  const { search, setSearch, showModal,setVisibleLeft,setVisibleRight } = useAppContext();
   const changeInput = (e: string) => {
     setSearch(e);
   };
@@ -57,7 +57,7 @@ function MainPage() {
   return (
     <div className={styles.mainPage}>
       <header className={styles.header}>
-        <div className={styles.hamburger}>
+        <div onClick={() => setVisibleLeft(true)} className={styles.hamburger}>
           <RxHamburgerMenu />
         </div>
         <div className={`${styles.search} ${styles.search_laptop}`}>
@@ -103,7 +103,7 @@ function MainPage() {
               ]}
             />
           </div>
-          <div className={styles.avatar}>
+          <div onClick={() => setVisibleRight(true)} className={styles.avatar}>
             <BiSolidUserCircle />
           </div>
         </div>
