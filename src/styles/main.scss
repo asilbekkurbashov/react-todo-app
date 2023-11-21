@@ -93,10 +93,6 @@ svg {
   background-color: var(--menu-bg-default) !important;
 }
 
-.ant-modal-footer{
-  display: none;
-}
-
 .ant-modal-close-x svg {
   color: var(--major-text-default) !important;
 }
@@ -155,10 +151,6 @@ svg {
   background-color: transparent;
 }
 
-.ant-form-item-control-input-content .inputName{
-  min-height: 42px !important;
-}
-
 .inputName, .datePicker #control-ref_date, .textarea, .ant-checkbox-input{
   color: var(--major-text-default) !important;
   font-size: 18px;
@@ -177,15 +169,12 @@ svg {
   background-color: var(--menu-bg-default) !important;
 }
 
-.datePicker input{
-  color: var(--major-text-default) !important;
-}
-
 .datePicker input::placeholder {
   color: var(--major-text-default) !important;
-  // font-size: 16px !important;
+  font-size: 18px !important;
 }
 
+// navbar
 ul li a.active{
   color: var(--directory-text-default) !important;
   background-color: var(--li-active-bg-default);
@@ -209,7 +198,7 @@ ul li a:hover{
   color: var(--major-text-default) !important;
 }
 
-
+// confirm-delete
 .ant-popconfirm-message-text {
   .ant-popconfirm-title{
     color: var(--major-text-default) !important
@@ -233,4 +222,17 @@ ul li a:hover{
 }
 
 
+.ant-select-selection-placeholder {
+  color: var(--major-text-default) !important;
+  font-size: 18px;
+}
 
+@media (max-width: 700px) {
+  .inputName, .datePicker #control-ref_date, .textarea, .ant-checkbox-input,.ant-select-selection-placeholder{
+    font-size: 14px;
+  } 
+
+  .datePicker input::placeholder {
+    font-size: 14px !important;
+  }
+}

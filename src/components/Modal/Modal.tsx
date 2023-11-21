@@ -61,6 +61,7 @@ function ModalComponent() {
       open={isModalOpen}
       onCancel={handleCancel}
       footer={false}
+      centered
     >
       <Form
         name="task"
@@ -120,7 +121,6 @@ function ModalComponent() {
         >
           <Select
             placeholder={t("directory placeholder")}
-            className="select"
             options={[
               { value: "main", label: "main" },
               { value: "music", label: "music" },
