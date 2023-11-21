@@ -168,6 +168,7 @@
   .todo_list {
     display: flex;
     flex-direction: column;
-    font-size: 10px;
+    font-size: 12px !important;
+    color: red;
   }
 }
