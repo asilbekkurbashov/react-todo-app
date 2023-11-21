@@ -84,7 +84,7 @@ svg {
 .ant-modal-content {
   background-color: var(--menu-bg-default) !important;
   padding: 20px 24px !important;
-  padding-bottom: 10px !important;
+  padding-bottom: 5px !important;
   width: 100%;
 }
 
@@ -121,6 +121,10 @@ svg {
 
 .ant-col {
   text-align: start !important;
+}
+
+.ant-form-item-label {
+  height: 40px;
 }
 
 .ant-picker{
