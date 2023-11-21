@@ -111,3 +111,12 @@ section {
         opacity: .3;
     }
 }
+
+@media (max-width: 1200px){
+    .page {
+        font-size: 20px;
+    }
+    .noTodo {
+        font-size: 24px;
+    }
+}

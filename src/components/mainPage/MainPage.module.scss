@@ -164,4 +164,10 @@
   .search_laptop {
     display: none;
   }
+
+  .todo_list {
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+  }
 }
