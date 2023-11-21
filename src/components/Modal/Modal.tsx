@@ -60,7 +60,6 @@ function ModalComponent() {
       title={editID ? t("Edit task") : t("Add a task")}
       open={isModalOpen}
       onCancel={handleCancel}
-      style={{ maxWidth: 520}}
       footer={false}
     >
       <Form

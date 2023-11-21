@@ -75,7 +75,6 @@ svg {
 
 // modal
 .ant-modal {
-  min-width: 550px;
   label{
     color: var(--major-text-default) !important;
   }
@@ -86,6 +85,7 @@ svg {
   background-color: var(--menu-bg-default) !important;
   padding: 20px 24px !important;
   padding-bottom: 10px !important;
+  width: 100%;
 }
 
 .ant-modal-title {
