@@ -15,14 +15,24 @@
       "description": "asdad",
       "directory": "music",
       "important": true,
-      "id": "e1415eb9-1311-4214-abf6-f1e72087b023"
+      "id": "e1415eb9-1311-4214-abf6-f1e72087b023",
+      "completed": false
     },
     {
       "title": "aymira",
       "date": "2023-11-03",
       "description": "hdhgcgjj",
       "directory": "music",
-      "id": "bb67992d-12f8-44a5-bf87-cfe59a780414"
+      "id": "bb67992d-12f8-44a5-bf87-cfe59a780414",
+      "completed": false
+    },
+    {
+      "title": "svetlana",
+      "date": "2023-11-09",
+      "description": "kuttibaeva",
+      "directory": "music",
+      "completed": true,
+      "id": "718af06b-c7a8-44ab-893b-fcf26e9ecedd"
     }
   ]
 }

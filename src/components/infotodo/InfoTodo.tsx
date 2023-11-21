@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import { MdToday } from "react-icons/md";
 import { AiFillStar, AiFillDelete } from "react-icons/ai";
 import { HiDotsVertical } from "react-icons/hi";
+import { FaCheck,FaXmark } from "react-icons/fa6";
 
 import { I_Todo } from "../../state/todosSlice/Todos";
 import { deleteTodo } from "../../state/todosSlice/Todos";
@@ -68,9 +69,17 @@ function InfoTodo(props: Props) {
           <div className="option">
             <Button
               onClick={() => toggleCom(elem)}
+              class_btn="for_laptop"
               type_btn={elem.completed ? "completed" : "uncompleted"}
             >
-              {elem.completed ? t("completed") : t("uncompleted")}
+              {elem.completed ? 'completed' : 'uncompleted'}
+            </Button>
+            <Button
+              onClick={() => toggleCom(elem)}
+              class_btn = 'for_mobile'
+              type_btn={elem.completed ? "completed" : "uncompleted"}
+            >
+              {elem.completed ? <FaCheck/> : <FaXmark/>}
             </Button>
             <div className="rightOption">
               <span
