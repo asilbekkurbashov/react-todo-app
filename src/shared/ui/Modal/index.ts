@@ -1,1 +1,1 @@
-export {ModalComponent} from "./ui/ModalComponent"
+export {ModalCom} from "./ui/ModalComponent"

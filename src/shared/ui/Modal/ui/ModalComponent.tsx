@@ -7,7 +7,7 @@ interface IProps {
   
 }
 
-export function ModalComponent(props: IProps) {
+export function ModalCom(props: IProps) {
   return (
     <Portal container={document.body}>
       <Modal>{props.children}</Modal>

@@ -17,7 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useAppContext } from "../../hooks/useAppContext";
 import { useTranslation } from "react-i18next";
 
-function kodalComponent() {
+function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const {todos} = useAppSelector(state => state.TodoReducer)
@@ -143,5 +143,5 @@ function kodalComponent() {
   );
 }
 
-export default kodalComponent;
+export default ModalComponent;
 
