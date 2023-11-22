@@ -11,6 +11,11 @@
     padding: 5px 20px;
     padding-top: 20px;
     background-color: var(--menu-bg-default);
+    z-index: 1;
+
+    &.rightMenuActive{
+        right: 0;
+    }
 }
 
 .user{
@@ -131,6 +136,6 @@
 
 @media (max-width: 1200px){
     .rightMenu {
-        display: none;
+        right: -320px;
     }
 }

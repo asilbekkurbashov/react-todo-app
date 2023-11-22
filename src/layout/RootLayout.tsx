@@ -23,7 +23,6 @@ function RootLayout() {
         bodyStyle={{backgroundColor:'var(--menu-bg-default)'}}
       >
         <LeftMenu />
-        <h1>hello</h1>
       </Drawer>
 
       <LeftMenu />

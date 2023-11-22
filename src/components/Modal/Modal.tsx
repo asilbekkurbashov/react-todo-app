@@ -17,7 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useAppContext } from "../../hooks/useAppContext";
 import { useTranslation } from "react-i18next";
 
-function ModalComponent() {
+function kodalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const {todos} = useAppSelector(state => state.TodoReducer)
@@ -45,15 +45,15 @@ function ModalComponent() {
     if(deletePending) { message.success(t('successDeleted'))}
   }, [setPending,deletePending])
 
-  // useEffect(() => {
-  //   const task = todos.find((el) => el.id === editID)
-  //   console.log(task);
-  //   if (editID) {
-  //     form.setFieldsValue({
-  //       ...task,
-  //     });
-  //   }
-  // }, [form, editID, todos]);
+  useEffect(() => {
+    const task = todos.find((el) => el.id === editID)
+    console.log(task);
+    // if (editID) {
+    //   form.setFieldsValue({
+    //     ...task,
+    //   });
+    // }
+  }, [form, editID, todos]);
 
 
   return (
@@ -66,7 +66,6 @@ function ModalComponent() {
     >
       <Form
         name="task"
-        className="task-form"
         form={form}
         layout="vertical"
         onFinish={onFinish}
@@ -144,5 +143,5 @@ function ModalComponent() {
   );
 }
 
-export default ModalComponent;
+export default kodalComponent;
 

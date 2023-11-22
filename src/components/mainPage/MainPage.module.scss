@@ -7,6 +7,7 @@
   position: relative;
   overflow: auto;
   min-height: 100vh;
+  margin:  0 300px;
   background-color: var(--main-bg-default);
   padding: 20px;
   box-shadow: inset 3px 0px 50px -20px rgba(0, 0, 0, 0.5);
@@ -54,5 +55,9 @@
   .add_task_phone {
     display: flex;
     align-items: center;
+  }
+
+  .mainPage {
+    margin: 0;
   }
 }

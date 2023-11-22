@@ -9,6 +9,8 @@ import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { ThemeActions } from "../../state/themeSlice/ThemeSlice";
 import {useTranslation} from 'react-i18next'
+import { clsx } from "../../helper/clsx";
+import { useAppContext } from "../../hooks/useAppContext";
 
 function RightMenu() {
   const dispatch = useAppDispatch();
@@ -16,9 +18,11 @@ function RightMenu() {
   const {todos} = useAppSelector(state => state.TodoReducer)
   const completedTodos = todos.filter(el => el.completed)
   const {t} = useTranslation()
+  const {visibleRight} = useAppContext()
+
 
   return (
-    <div className={styles.rightMenu}>
+    <div className={clsx([styles.rightMenu], {[styles.rightMenuActive] : visibleRight})}>
       <div>
         <div className={styles.user}>
           <h2>{t('Hi, User!')}</h2>

@@ -10,16 +10,6 @@
   outline: none;
 }
 
-body {
-  margin: 0 300px;
-}
-
-@media (max-width: 1200px){
-  body{
-    margin: 0;
-  }
-}
-
 ul,
 li {
   list-style: none;
@@ -78,7 +68,6 @@ svg {
   label{
     color: var(--major-text-default) !important;
   }
-  z-index: 10000;
 }
 
 .ant-modal-content {
@@ -98,11 +87,6 @@ svg {
 }
 
 // form
-.form{
-  display: grid !important;
-  background-color: var(--menu-bg-default) !important;
-}
-
 .checkbox{
   margin-bottom: 20px;
 
@@ -139,10 +123,6 @@ svg {
 .btn:hover{
   background-color: var(--add-button) !important;
   opacity: .9;
-}
-
-.select{
-  height: 42px;
 }
 
 .select span {
