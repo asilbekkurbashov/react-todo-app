@@ -149,13 +149,17 @@ svg {
   color: var(--major-text-default) !important;
 } 
 
-.datePicker {
+.datePicker  {
   background-color: var(--menu-bg-default) !important;
+}
+
+.ant-picker-input input {
+  color: var(--major-text-default) !important;
 }
 
 .datePicker input::placeholder {
   color: var(--major-text-default) !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
 }
 
 // navbar
@@ -208,7 +212,7 @@ ul li a:hover{
 
 .ant-select-selection-placeholder {
   color: var(--major-text-default) !important;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 @media (max-width: 700px) {

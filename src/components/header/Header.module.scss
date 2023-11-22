@@ -10,6 +10,10 @@
   text-align: center;
   font-size: 20px;
   color: var(--major-text-default);
+
+  p, h2 {
+    margin:  0;
+  }
 }
 
 .headerBlock {
