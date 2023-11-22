@@ -17,7 +17,7 @@ import { useTheme } from "./hooks/useTheme";
 
 function App() {
   const dispatch = useAppDispatch()
-  useTheme()
+  useTheme()  
 
   useEffect(() => {
     dispatch(getTodos())

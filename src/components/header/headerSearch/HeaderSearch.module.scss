@@ -1,0 +1,46 @@
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border-default);
+    background-color: var(--menu-bg-default);
+    border-radius: 8px;
+    padding: 0px 5px;
+    width: 300px;
+    cursor: pointer;
+    transition: border 200ms;
+    &:hover {
+      border: 1px solid var(--add-button);
+    }
+  
+    input {
+      border: none;
+      width: 90%;
+      background-color: transparent;
+      outline: none;
+      font-size: 18px;
+      padding: 10px 4px 10px 5px;
+      color: var(--major-text-default);
+    }
+  
+    svg {
+      font-size: 24px;
+      color: var(--major-text-default);
+    }
+  }
+.search_phone_device {
+    display:none;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+
+@media (max-width:1200px) {
+    .search_phone_device{
+        display: flex;
+        align-items: center;
+      }
+    .search_laptop {
+        display: none;
+    }
+} 

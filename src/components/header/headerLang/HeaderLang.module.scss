@@ -1,0 +1,12 @@
+.langBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.currentLang {
+  span {
+    padding-right: 0 !important;
+  }
+}

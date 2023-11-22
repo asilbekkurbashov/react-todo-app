@@ -20,6 +20,7 @@ import { useTranslation } from "react-i18next";
 function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const {todos} = useAppSelector(state => state.TodoReducer)
   const { setPending ,deletePending} = useAppSelector((state) => state.TodoReducer);
   const { isModalOpen, setIsModalOpen, editID } = useAppContext();
 
