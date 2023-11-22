@@ -15,9 +15,9 @@ export const getTodos = createAsyncThunk<I_Todo[]>(
   }
 });
 
-export const setTodos = createAsyncThunk<undefined, I_Todo>(
+export const setTodos = createAsyncThunk(
   "TodosSlice/setTodos",
-  async (body, {rejectWithValue,dispatch}) => {
+  async (body:I_Todo, {rejectWithValue,dispatch}) => {
     try {
       const response = await axios.post("http://localhost:3000/todo", body)
       
@@ -30,9 +30,9 @@ export const setTodos = createAsyncThunk<undefined, I_Todo>(
   }
 )
 
-export const deleteTodo = createAsyncThunk<undefined, string>(
+export const deleteTodo = createAsyncThunk(
   "TodosSlice/deleteTodo",
-  async (id, {rejectWithValue, dispatch}) => {
+  async (id:string, {rejectWithValue, dispatch}) => {
     try {
       const response = await axios.delete(`http://localhost:3000/todo/${id}`)
       if(response.status === 200){
@@ -44,23 +44,40 @@ export const deleteTodo = createAsyncThunk<undefined, string>(
   }
 )
 
-export const editTodo = createAsyncThunk<undefined, I_Todo>(
-  "TodosSlice/editTodo",
-  async (body, {rejectWithValue ,dispatch}) => {
+export const getForEdit = createAsyncThunk(
+  'TodosSlice/getForEdit',
+  async (body:I_Todo, {rejectWithValue,dispatch}) => {
     try {
-      const response = await axios.put(`http://localhost:3000/todo/${body.id}`, body)
-      if(response.status === 200){
-        dispatch(TodoActions.setTodosEdit(body))
+      const response = await axios.get(`http://localhost:3000/todo/${body.id}`);
+      if(response.status === 200) {
+        dispatch(TodoActions.setTask(response.data))
       }
     } catch (error) {
-      return rejectWithValue('Error')
+      return rejectWithValue(error)
     }
   }
 )
 
-export const toggleCompleted = createAsyncThunk<undefined, I_Todo>(
+export const editTodo = createAsyncThunk(
+  "TodosSlice/editTodo",
+  async (body:I_Todo, {rejectWithValue ,dispatch}) => {
+    console.log(body);
+    
+    try {
+      const response = await axios.put(`http://localhost:3000/todo/${body.id}`, body)
+      
+      if(response.status === 200){
+        dispatch(TodoActions.setTodosEdit(body))
+      }
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const toggleCompleted = createAsyncThunk(
   "TodosSlice/toggleCompleted",
-  async (body, {rejectWithValue, dispatch}) => {
+  async (body:I_Todo, {rejectWithValue, dispatch}) => {
     try {
       const response = await axios.put(`http://localhost:3000/todo/${body.id}`, body)
       if(response.status === 200){
@@ -72,9 +89,9 @@ export const toggleCompleted = createAsyncThunk<undefined, I_Todo>(
   }
 )
 
-export const toggleImportant = createAsyncThunk<undefined, I_Todo>(
+export const toggleImportant = createAsyncThunk(
   "TodosSlice/toggleImportant",
-  async (body, {rejectWithValue, dispatch}) => {
+  async (body:I_Todo, {rejectWithValue, dispatch}) => {
     try {
       const response = await axios.put(`http://localhost:3000/todo/${body.id}`, body)
       if(response.status === 200){
@@ -106,6 +123,8 @@ interface I_State {
 
   deletePending:boolean,
   deleteError:any,
+
+  task: I_Todo | null;
 }
 
 const initialState: I_State = {
@@ -118,6 +137,8 @@ const initialState: I_State = {
 
   deletePending:false,
   deleteError:null,
+
+  task:null,
 };
 
 const TodosSlice = createSlice({
@@ -141,6 +162,9 @@ const TodosSlice = createSlice({
     toggleImport(state, {payload}:PayloadAction<I_Todo>) {
       const findIndex = state.todos.findIndex(el => el.id === payload.id)
       state.todos[findIndex] = payload
+    },
+    setTask(state, {payload}:PayloadAction<I_Todo | null>){
+      state.task = payload  
     }
   },
   extraReducers: (builder) => {

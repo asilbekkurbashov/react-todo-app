@@ -2,38 +2,20 @@
   "todo": [
     {
       "title": "Asilbek",
-      "date": "2023-11-08",
-      "description": "kurbashov",
-      "directory": "music",
-      "important": false,
-      "completed": true,
-      "id": "5eb38f65-444b-495d-80cf-726085778fc3"
-    },
-    {
-      "title": "aqildos",
-      "date": "2023-11-14",
-      "description": "asdad",
+      "date": "2023-11-23",
+      "description": "a",
       "directory": "music",
       "important": true,
-      "id": "e1415eb9-1311-4214-abf6-f1e72087b023",
-      "completed": false
+      "completed": true,
+      "id": "d9e4154e-1ff7-4e94-903c-cece604f5fac"
     },
     {
       "title": "aymira",
-      "date": "2023-11-03",
-      "description": "hdhgcgjj",
-      "directory": "music",
-      "id": "bb67992d-12f8-44a5-bf87-cfe59a780414",
-      "completed": false
-    },
-    {
-      "title": "aaaaaa",
-      "date": "2023-11-09",
-      "description": "jfjgvj",
-      "directory": "music",
+      "date": "2023-11-18",
+      "description": "aaaaaaa",
+      "directory": "main",
       "important": true,
-      "completed": true,
-      "id": "7226c3b6-47a1-45bc-b2a3-e0c4cc5bd25b"
+      "id": "634d31e5-f954-411a-8f9d-4d6f362fd7ed"
     }
   ]
 }

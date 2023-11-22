@@ -9,7 +9,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { FaCheck,FaXmark } from "react-icons/fa6";
 
 import { I_Todo } from "../../state/todosSlice/Todos";
-import { deleteTodo } from "../../state/todosSlice/Todos";
+import { deleteTodo,getForEdit } from "../../state/todosSlice/Todos";
 import { useAppDispatch } from "../../hooks/useRedux";
 import { useAppContext } from "../../hooks/useAppContext";
 import { useTranslation } from "react-i18next";
@@ -33,12 +33,8 @@ interface Obj {
 function InfoTodo(props: Props) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setIsModalOpen, setEditID, search } = useAppContext();
+  const { setIsModalOpen, search } = useAppContext();
   const { data } = props;
-  const editTodo = (id: string) => {
-    setIsModalOpen(true);
-    setEditID(id);
-  };
 
   const toggleCom = (elem: I_Todo) => {
     const body = { ...elem, completed: !elem.completed };
@@ -48,6 +44,11 @@ function InfoTodo(props: Props) {
     const body = { ...elem, important: !elem.important };
     dispatch(toggleCompleted(body));
   };
+
+  const getAndEdit = (elem:I_Todo) => {
+    dispatch(getForEdit(elem))
+    setIsModalOpen(true);
+  }
 
   const debounce = useDebounce<string>(search.toLowerCase());
   const searchedData = data?.filter((el) =>
@@ -100,7 +101,7 @@ function InfoTodo(props: Props) {
                   <AiFillDelete />
                 </span>
               </Popconfirm>
-              <span onClick={() => editTodo(elem.id)}>
+              <span onClick={() => getAndEdit(elem)}>
                 <HiDotsVertical />
               </span>
             </div>

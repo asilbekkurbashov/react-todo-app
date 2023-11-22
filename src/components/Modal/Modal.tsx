@@ -12,21 +12,23 @@ import {
   message,
 } from "antd";
 // editTodo
-import { I_Todo, setTodos } from "../../state/todosSlice/Todos";
+import { editTodo, I_Todo, setTodos } from "../../state/todosSlice/Todos";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useAppContext } from "../../hooks/useAppContext";
 import { useTranslation } from "react-i18next";
+import {TodoActions} from '../../state/todosSlice/Todos'
+import dayjs from 'dayjs'
 
 function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const {todos} = useAppSelector(state => state.TodoReducer)
-  const { setPending ,deletePending} = useAppSelector((state) => state.TodoReducer);
-  const { isModalOpen, setIsModalOpen, editID } = useAppContext();
+  const {todos,task,setPending,deletePending} = useAppSelector(state => state.TodoReducer)
+  const { isModalOpen, setIsModalOpen } = useAppContext();
 
   const handleCancel = () => {
     setIsModalOpen(false);
     form.resetFields();
+    dispatch(TodoActions.setTask(null))
   };
   const [dateValue, setDateValue] = useState("");
   const [form] = Form.useForm();
@@ -36,7 +38,11 @@ function ModalComponent() {
   };
 
   const onFinish = (value:I_Todo) => {
-    dispatch(setTodos({...value, id:v4() ,date:dateValue}))
+    if(task) {
+      dispatch(editTodo({...value, id: task.id, date: dateValue}))
+    } else {
+      dispatch(setTodos({...value, id:v4() ,date:dateValue}))
+    }
     handleCancel()
   };
 
@@ -46,19 +52,19 @@ function ModalComponent() {
   }, [setPending,deletePending])
 
   useEffect(() => {
-    const task = todos.find((el) => el.id === editID)
-    console.log(task);
-    // if (editID) {
-    //   form.setFieldsValue({
-    //     ...task,
-    //   });
-    // }
-  }, [form, editID, todos]);
+    if (task) {
+      form.setFieldsValue({
+        ...task,
+        date: dayjs(task.date,'YYYY-MM-DD')
+      });
+      
+    }
+  }, [form, task]);
 
 
   return (
     <Modal
-      title={editID ? t("Edit task") : t("Add a task")}
+      title={task ? t("Edit task") : t("Add a task")}
       open={isModalOpen}
       onCancel={handleCancel}
       footer={false}
@@ -70,6 +76,7 @@ function ModalComponent() {
         layout="vertical"
         onFinish={onFinish}
         size="large"
+      
       >
         <Form.Item
           name="title"
@@ -82,7 +89,7 @@ function ModalComponent() {
             },
           ]}
         >
-          <Input placeholder={t("title placeholder")} className="inputName" />
+          <Input placeholder={t("title placeholder")} className="inputName"/>
         </Form.Item>
         <Form.Item
           name="date"
@@ -135,7 +142,7 @@ function ModalComponent() {
         </Form.Item>
         <Form.Item>
           <Button block className="btn" htmlType="submit">
-            {editID ? t("Edit task") : t("Add a task")}{" "}
+            {task ? t("Edit task") : t("Add a task")}{" "}
           </Button>
         </Form.Item>
       </Form>
