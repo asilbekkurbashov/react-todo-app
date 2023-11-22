@@ -25,7 +25,7 @@ function RootLayout() {
         <LeftMenu />
       </Drawer>
 
-      <LeftMenu />
+      {!isMobile && <LeftMenu />}
       <MainPage />
 
       <Drawer
@@ -40,7 +40,7 @@ function RootLayout() {
         <RightMenu />
       </Drawer>
 
-      <RightMenu />
+      {isMobile && <RightMenu />}
 
       <ModalComponent />
     </div>
