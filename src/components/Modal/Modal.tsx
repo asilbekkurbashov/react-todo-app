@@ -22,7 +22,7 @@ import dayjs from 'dayjs'
 function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const {todos,task,setPending,deletePending} = useAppSelector(state => state.TodoReducer)
+  const {task,setPending,deletePending} = useAppSelector(state => state.TodoReducer)
   const { isModalOpen, setIsModalOpen } = useAppContext();
 
   const handleCancel = () => {
@@ -55,7 +55,7 @@ function ModalComponent() {
     if (task) {
       form.setFieldsValue({
         ...task,
-        date: dayjs(task.date,'YYYY-MM-DD')
+        date: dayjs(task.date)
       });
       
     }
