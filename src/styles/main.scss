@@ -184,6 +184,9 @@ ul li a:hover{
 
 .ant-popover-inner-content{
   color: var(--major-text-default) !important;
+  p{
+    margin-bottom: 0;
+  }
 }
 
 // confirm-delete

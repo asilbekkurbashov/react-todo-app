@@ -1,16 +1,17 @@
-import "../style/StylePages.scss";
-import InfoTodo from "../../components/infotodo/InfoTodo";
-import { useAppSelector } from "../../hooks/useRedux";
+import InfoTodo from "../components/infotodo/InfoTodo";
+import { useFilterData } from "../hooks/useFilterData";
+import { useAppSelector } from "../hooks/useRedux";
+import "../pages/style/StylePages.scss";
 import {useTranslation} from 'react-i18next'
 
-function AllTasks() {
+export function Page() {
   const {todos, pending, error} = useAppSelector(state => state.TodoReducer)
-  const {t} = useTranslation();
-  const completedTodos = todos.filter(el => el.completed)
+  const data = useFilterData(todos)
+  const {t} = useTranslation()
 
   return (
     <section className="section">
-      <p className="page">{t('Completed tasks')} ({completedTodos.length} {t('tasks')})</p>
+      <p className="page">{t('All tasks')} ({todos.length} {t('tasks')})</p>
       <div>
         {todos.length ? (
           <div className="todos">
@@ -19,7 +20,7 @@ function AllTasks() {
             ) : error ? (
               <h1>{error}</h1>
             ) : (
-              <InfoTodo data={completedTodos} />
+              <InfoTodo data={data} />
             )}
           </div>
         ) : (
@@ -32,4 +33,3 @@ function AllTasks() {
   );
 }
 
-export default AllTasks;
