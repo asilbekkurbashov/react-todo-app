@@ -12,8 +12,8 @@ const sharedSlice = createSlice({
   name: "sharedSlice",
   initialState,
   reducers: {
-    toggleIsModal: (state) => {
-      state.isModal = !state.isModal;
+    setIsModal: (state,{payload}:PayloadAction<boolean>) => {
+      state.isModal = payload;
     },
     setDrawerLeft: (state, { payload }: PayloadAction<boolean>) => {
       state.drawerLeft = payload;

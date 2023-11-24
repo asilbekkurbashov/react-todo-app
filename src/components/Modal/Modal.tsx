@@ -38,7 +38,8 @@ function ModalComponent() {
   ] = useEditTaskMutation();
 
   const handleCancel = () => {
-    dispatch(SharedSliceActions.toggleIsModal());
+    dispatch(SharedSliceActions.setIsModal(false));
+    dispatch(TaskActions.setTask(null))
     form.resetFields();
   };
   
@@ -60,7 +61,7 @@ function ModalComponent() {
 
   useEffect(() => {
     if (addLoading || editLoading) {
-      dispatch(SharedSliceActions.toggleIsModal());
+      dispatch(SharedSliceActions.setIsModal(false));
       dispatch(TaskActions.setTask(null));
       form.resetFields();
     }

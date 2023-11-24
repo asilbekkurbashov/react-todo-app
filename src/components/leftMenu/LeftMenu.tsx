@@ -15,7 +15,7 @@ function LeftMenu() {
     (state) => state.SharedSliceReducer
   );
   const handleModal = () => {
-    dispatch(SharedSliceActions.toggleIsModal())
+    dispatch(SharedSliceActions.setIsModal(true))
     dispatch(SharedSliceActions.setDrawerLeft(false));
   };
   const closeDrawer = () => {

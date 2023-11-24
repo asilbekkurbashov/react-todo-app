@@ -45,7 +45,7 @@ function InfoTodo(props: Props) {
 
   const editTask = (elem:T_TaskItem) => {
     dispatch(TaskActions.setTask(elem))
-    dispatch(SharedSliceActions.toggleIsModal())
+    dispatch(SharedSliceActions.setIsModal(true))
   }
 
   const debounce = useDebounce<string>(search.toLowerCase());

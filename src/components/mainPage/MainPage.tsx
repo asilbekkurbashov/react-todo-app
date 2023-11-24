@@ -16,7 +16,7 @@ import { useAppDispatch } from "../../hooks/useRedux";
 function MainPage() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch()
-  const {toggleIsModal} = SharedSliceActions
+  const {setIsModal} = SharedSliceActions
   const { isMobile } = useResponsive(1200);
 
   return (
@@ -27,7 +27,7 @@ function MainPage() {
         <Outlet />
       </main>
       <footer className={styles.footer}>{t("TO-DO LIST")}</footer>
-      <div onClick={() => dispatch(toggleIsModal())} className={styles.add_task_phone}>
+      <div onClick={() => dispatch(setIsModal(true))} className={styles.add_task_phone}>
         <GoPlus />
       </div>
     </div>
