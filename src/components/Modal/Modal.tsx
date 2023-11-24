@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { v4 } from "uuid";
 import {
   Button,
   Modal,
@@ -11,24 +10,27 @@ import {
   Checkbox,
   message,
 } from "antd";
-// editTodo
-import { editTodo, I_Todo, setTodos } from "../../state/todosSlice/Todos";
+import {  I_Todo } from "../../state/todosSlice/Todos";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
-import { useAppContext } from "../../hooks/useAppContext";
 import { useTranslation } from "react-i18next";
-import {TodoActions} from '../../state/todosSlice/Todos'
+import { useAddTaskMutation, useEditTaskMutation } from "../../state/tasks/task.api";
+import { SharedSliceActions } from "../../state/shared/sharedSlice";
+import {TaskActions} from '../../state/tasks/task.slice'
 import dayjs from 'dayjs'
 
 function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const {task,setPending,deletePending} = useAppSelector(state => state.TodoReducer)
-  const { isModalOpen, setIsModalOpen } = useAppContext();
+  const { isModal } = useAppSelector((state) => state.SharedSliceReducer);
+  const {task} = useAppSelector(state => state.TaskReducer)
+
+  const [addTask, {isLoading:addLoading, isSuccess: addSuccess, isError: addError}] = useAddTaskMutation()
+  const [editTask, {isLoading:ediеLoading, isSuccess: editSuccess, isError: editError}] = useEditTaskMutation()
 
   const handleCancel = () => {
-    setIsModalOpen(false);
+    dispatch(SharedSliceActions.toggleIsModal())
     form.resetFields();
-    dispatch(TodoActions.setTask(null))
+    dispatch(TaskActions.setTask(null))
   };
   const [dateValue, setDateValue] = useState("");
   const [form] = Form.useForm();
@@ -37,19 +39,20 @@ function ModalComponent() {
     setDateValue(dateString);
   };
 
-  const onFinish = (value:I_Todo) => {
+  const onFinish = async (value:I_Todo) => {
     if(task) {
-      dispatch(editTodo({...value, id: task.id, date: dateValue}))
+      await editTask({...value, date:dateValue,id:value.id})
     } else {
-      dispatch(setTodos({...value, id:v4() ,date:dateValue}))
+      await addTask({...value, date:dateValue})
+      console.log(value);
     }
     handleCancel()
   };
 
   useEffect(() => {
-    if(setPending) { message.success(t('successAdd'))} 
-    if(deletePending) { message.success(t('successDeleted'))}
-  }, [setPending,deletePending])
+    if(addSuccess) { message.success(t('successAdd'))} 
+    if(editSuccess) { message.success(t('successEdit'))} 
+  }, [addSuccess,editSuccess])
 
   useEffect(() => {
     if (task) {
@@ -57,7 +60,6 @@ function ModalComponent() {
         ...task,
         date: dayjs(task.date)
       });
-      
     }
   }, [form, task]);
 
@@ -65,7 +67,7 @@ function ModalComponent() {
   return (
     <Modal
       title={task ? t("Edit task") : t("Add a task")}
-      open={isModalOpen}
+      open={isModal}
       onCancel={handleCancel}
       footer={false}
       centered

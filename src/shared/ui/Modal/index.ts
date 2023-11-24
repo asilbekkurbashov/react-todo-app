@@ -1,1 +1,0 @@
-export {ModalCom} from "./ui/ModalComponent"

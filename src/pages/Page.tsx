@@ -1,26 +1,30 @@
 import InfoTodo from "../components/infotodo/InfoTodo";
 import { useFilterData } from "../hooks/useFilterData";
-import { useAppSelector } from "../hooks/useRedux";
-import "../pages/style/StylePages.scss";
 import {useTranslation} from 'react-i18next'
+import {useDefaultQuery} from '../state/index.api'
+import "./StylePages.scss";
+import { useLocation } from "react-router-dom";
+import { useLabel } from "../hooks/useLabel";
 
 export function Page() {
-  const {todos, pending, error} = useAppSelector(state => state.TodoReducer)
-  const data = useFilterData(todos)
+  const {data=[], isLoading,isError} = useDefaultQuery()
+  const filterData = useFilterData(data)
+  const {pathname} = useLocation();
+  const menuLabel = useLabel(pathname)  ;
   const {t} = useTranslation()
 
   return (
     <section className="section">
-      <p className="page">{t('All tasks')} ({todos.length} {t('tasks')})</p>
+      <p className="page">{menuLabel} ({filterData ? filterData.length : 0} {t('tasks')})</p>
       <div>
-        {todos.length ? (
+        {data.length ? (
           <div className="todos">
-            {pending ? (
+            {isLoading ? (
               <h1>Loading</h1>
-            ) : error ? (
-              <h1>{error}</h1>
+            ) : isError ? (
+              <h1>{isError}</h1>
             ) : (
-              <InfoTodo data={data} />
+              <InfoTodo data={filterData} />
             )}
           </div>
         ) : (

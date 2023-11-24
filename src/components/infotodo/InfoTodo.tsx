@@ -1,53 +1,51 @@
-import "../../pages/style/StylePages.scss";
+import "../../pages/StylePages.scss";
 
-import { Popconfirm } from "antd";
-import Button from "../Button/Button";
+import { Popconfirm, message } from "antd";
+import Button from "../../shared/ui/Button/Button";
 //icons
 import { MdToday } from "react-icons/md";
 import { AiFillStar, AiFillDelete } from "react-icons/ai";
 import { HiDotsVertical } from "react-icons/hi";
 import { FaCheck,FaXmark } from "react-icons/fa6";
 
-import { I_Todo } from "../../state/todosSlice/Todos";
-import { deleteTodo,getForEdit } from "../../state/todosSlice/Todos";
-import { useAppDispatch } from "../../hooks/useRedux";
-import { useAppContext } from "../../hooks/useAppContext";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useTranslation } from "react-i18next";
 import { toggleCompleted } from "../../state/todosSlice/Todos";
 import { useDebounce } from "../../hooks/useDebounce";
+import { useDeleteTaskMutation } from "../../state/tasks/task.api";
+import {TaskActions} from '../../state/tasks/task.slice'
+import { SharedSliceActions } from "../../state/shared/sharedSlice";
+import { T_TaskItem } from "../../state/tasks/task.type";
+
 
 interface Props {
-  data?: I_Todo[];
-}
-
-interface Obj {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-  directory: string;
-  important: boolean;
-  completed: boolean;
+  data?: T_TaskItem[];
 }
 
 function InfoTodo(props: Props) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { setIsModalOpen, search } = useAppContext();
+  const {search} = useAppSelector(state => state.SharedSliceReducer)
+  const [deleteTask] = useDeleteTaskMutation();
   const { data } = props;
 
-  const toggleCom = (elem: I_Todo) => {
+  const condirmDelete = async (id:string) => {
+    await deleteTask(id);
+    message.success(t('successDeleted'))
+  }
+
+  const toggleCom = (elem: T_TaskItem) => {
     const body = { ...elem, completed: !elem.completed };
     dispatch(toggleCompleted(body));
   };
-  const toggleImp = (elem: I_Todo) => {
+  const toggleImp = (elem: T_TaskItem) => {
     const body = { ...elem, important: !elem.important };
     dispatch(toggleCompleted(body));
   };
 
-  const getAndEdit = (elem:I_Todo) => {
-    dispatch(getForEdit(elem))
-    setIsModalOpen(true);
+  const editTask = (elem:T_TaskItem) => {
+    dispatch(TaskActions.setTask(elem))
+    dispatch(SharedSliceActions.toggleIsModal())
   }
 
   const debounce = useDebounce<string>(search.toLowerCase());
@@ -58,7 +56,7 @@ function InfoTodo(props: Props) {
   const todos = debounce ? searchedData : data;
 
   return todos?.length ? (
-    todos.map((elem: Obj) => {
+    todos.map((elem: T_TaskItem) => {
       return (
         <div className="todo" key={elem.id}>
           <p className="directory">{elem.directory}</p>
@@ -73,7 +71,7 @@ function InfoTodo(props: Props) {
               class_btn="for_laptop"
               type_btn={elem.completed ? "completed" : "uncompleted"}
             >
-              {elem.completed ? 'completed' : 'uncompleted'}
+              {elem.completed ? t('completed') : t('uncompleted')}
             </Button>
             <Button
               onClick={() => toggleCom(elem)}
@@ -95,13 +93,13 @@ function InfoTodo(props: Props) {
                 description={t('sure')}
                 okText={t('Yes')}
                 cancelText={t('No')}
-                onConfirm={() => dispatch(deleteTodo(elem.id))}
+                onConfirm={() => condirmDelete(elem.id)}
               >
                 <span>
                   <AiFillDelete />
                 </span>
               </Popconfirm>
-              <span onClick={() => getAndEdit(elem)}>
+              <span onClick={() => editTask(elem)}>
                 <HiDotsVertical />
               </span>
             </div>

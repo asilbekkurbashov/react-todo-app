@@ -1,14 +1,13 @@
 import styles from "./HeaderBadge.module.scss";
 import { Popover } from "antd";
 import { BsFillBellFill } from "react-icons/bs";
-import { useAppSelector } from "../../../hooks/useRedux";
 import { t } from "i18next";
+import { useDefaultQuery } from "../../../state";
 
 function HeaderBadge() {
-  const { todos } = useAppSelector((state) => state.TodoReducer);
-  const dataLength = todos.filter((elem) => !elem.completed);
-  const uncompletedTodos = todos.filter((el) => !el.completed);
-  const content = uncompletedTodos.map((el, index) => (
+  const {data=[]} = useDefaultQuery()
+  const dataLength = data.filter((elem) => !elem.completed);
+  const content = dataLength.map((el, index) => (
     <div key={el.id}>
       <p>
         {index + 1}. {el.title}
