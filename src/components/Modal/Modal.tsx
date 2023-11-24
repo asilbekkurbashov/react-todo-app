@@ -31,6 +31,7 @@ function ModalComponent() {
     addTask,
     { isLoading: addLoading, isSuccess: addSuccess, isError: addError },
   ] = useAddTaskMutation();
+
   const [
     editTask,
     { isLoading: editLoading, isSuccess: editSuccess, isError: editError },
@@ -40,6 +41,7 @@ function ModalComponent() {
     dispatch(SharedSliceActions.toggleIsModal());
     form.resetFields();
   };
+  
   const [dateValue, setDateValue] = useState("");
   const [form] = Form.useForm();
 
