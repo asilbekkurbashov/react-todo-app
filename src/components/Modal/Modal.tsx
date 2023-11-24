@@ -10,27 +10,35 @@ import {
   Checkbox,
   message,
 } from "antd";
-import {  I_Todo } from "../../state/todosSlice/Todos";
+import { I_Todo } from "../../state/todosSlice/Todos";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useTranslation } from "react-i18next";
-import { useAddTaskMutation, useEditTaskMutation } from "../../state/tasks/task.api";
+import {
+  useAddTaskMutation,
+  useEditTaskMutation,
+} from "../../state/tasks/task.api";
 import { SharedSliceActions } from "../../state/shared/sharedSlice";
-import {TaskActions} from '../../state/tasks/task.slice'
-import dayjs from 'dayjs'
+import { TaskActions } from "../../state/tasks/task.slice";
+import dayjs from "dayjs";
 
 function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { isModal } = useAppSelector((state) => state.SharedSliceReducer);
-  const {task} = useAppSelector(state => state.TaskReducer)
+  const { task } = useAppSelector((state) => state.TaskReducer);
 
-  const [addTask, {isLoading:addLoading, isSuccess: addSuccess, isError: addError}] = useAddTaskMutation()
-  const [editTask, {isLoading:ediеLoading, isSuccess: editSuccess, isError: editError}] = useEditTaskMutation()
+  const [
+    addTask,
+    { isLoading: addLoading, isSuccess: addSuccess, isError: addError },
+  ] = useAddTaskMutation();
+  const [
+    editTask,
+    { isLoading: editLoading, isSuccess: editSuccess, isError: editError },
+  ] = useEditTaskMutation();
 
   const handleCancel = () => {
-    dispatch(SharedSliceActions.toggleIsModal())
+    dispatch(SharedSliceActions.toggleIsModal());
     form.resetFields();
-    dispatch(TaskActions.setTask(null))
   };
   const [dateValue, setDateValue] = useState("");
   const [form] = Form.useForm();
@@ -39,30 +47,37 @@ function ModalComponent() {
     setDateValue(dateString);
   };
 
-  const onFinish = async (value:I_Todo) => {
-    if(task) {
-      await editTask({...value, date:dateValue,id:value.id})
+  const onFinish = async (value: I_Todo) => {
+    if (task) {
+      await editTask({ ...value, date: dateValue, id: value.id });
     } else {
-      await addTask({...value, date:dateValue})
-      console.log(value);
+      await addTask({ ...value, date: dateValue });
     }
-    handleCancel()
+    handleCancel();
   };
 
   useEffect(() => {
-    if(addSuccess) { message.success(t('successAdd'))} 
-    if(editSuccess) { message.success(t('successEdit'))} 
-  }, [addSuccess,editSuccess])
+    if (addLoading || editLoading) {
+      dispatch(SharedSliceActions.toggleIsModal());
+      dispatch(TaskActions.setTask(null));
+      form.resetFields();
+    }
+  }, [addLoading, editLoading]);
+
+  useEffect(() => {
+    if (addSuccess) return message.success(t("successAdd"));
+    if (editSuccess) return message.success(t("successEdit"));
+    if (addError || editError) return message.error(t("errorTask"));
+  }, [addSuccess, editSuccess, addError, editError]);
 
   useEffect(() => {
     if (task) {
       form.setFieldsValue({
         ...task,
-        date: dayjs(task.date)
+        date: dayjs(task.date),
       });
     }
   }, [form, task]);
-
 
   return (
     <Modal
@@ -78,7 +93,6 @@ function ModalComponent() {
         layout="vertical"
         onFinish={onFinish}
         size="large"
-      
       >
         <Form.Item
           name="title"
@@ -91,7 +105,7 @@ function ModalComponent() {
             },
           ]}
         >
-          <Input placeholder={t("title placeholder")} className="inputName"/>
+          <Input placeholder={t("title placeholder")} className="inputName" />
         </Form.Item>
         <Form.Item
           name="date"
@@ -136,10 +150,18 @@ function ModalComponent() {
             ]}
           />
         </Form.Item>
-        <Form.Item style={{height:'20px'}} name="important" valuePropName="checked">
+        <Form.Item
+          style={{ height: "20px" }}
+          name="important"
+          valuePropName="checked"
+        >
           <Checkbox className="checkbox">{t("Mark as important")}</Checkbox>
         </Form.Item>
-        <Form.Item style={{height:'20px'}} name="completed" valuePropName="checked">
+        <Form.Item
+          style={{ height: "20px" }}
+          name="completed"
+          valuePropName="checked"
+        >
           <Checkbox className="checkbox">{t("Mark as completed")}</Checkbox>
         </Form.Item>
         <Form.Item>
@@ -153,4 +175,3 @@ function ModalComponent() {
 }
 
 export default ModalComponent;
-

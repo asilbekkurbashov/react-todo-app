@@ -33,5 +33,6 @@
     "Not found": "Не найдено",
     "successAdd" : "успешно добавлено",
     "successDeleted" : "успешно удалено",
-    "successEdit" : "успешно изменён"
+    "successEdit" : "успешно изменён",
+    "errorTask": "Что-то пошло не так"
 }

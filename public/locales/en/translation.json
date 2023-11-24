@@ -33,5 +33,6 @@
     "Not found": "Not Found",
     "successAdd" : "successfully added",
     "successDeleted" : "successfully deleted",
-    "successEdit" : "successfully modified"
+    "successEdit" : "successfully modified",
+    "errorTask": "Something went wrong"
 }
