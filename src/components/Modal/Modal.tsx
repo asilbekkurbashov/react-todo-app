@@ -32,18 +32,17 @@ function ModalComponent() {
 
   const [
     addTask,
-    { isLoading: addLoading, isSuccess: addSuccess, isError: addError },
+    { isSuccess: addSuccess, isError: addError },
   ] = useAddTaskMutation();
 
   const [
     editTask,
-    { isLoading: editLoading, isSuccess: editSuccess, isError: editError },
+    { isSuccess: editSuccess, isError: editError },
   ] = useEditTaskMutation();
 
   const handleCancel = () => {
     dispatch(SharedSliceActions.setIsModal(false));
     dispatch(TaskActions.setTask(null));
-    setDateValue('')
     form.resetFields();
   };
 
@@ -61,16 +60,8 @@ function ModalComponent() {
   };
 
   useEffect(() => {
-    if (addLoading || editLoading) {
-      dispatch(SharedSliceActions.setIsModal(false));
-      dispatch(TaskActions.setTask(null));
-      form.resetFields();
-    }
-  }, [addLoading, editLoading]);
-
-  useEffect(() => {
-    if (editSuccess) return message.success(t("successEdit"));
     if (addSuccess) return message.success(t("successAdd"));
+    if (editSuccess) return message.success(t("successEdit"));
     if (addError || editError) return message.error(t("errorTask"));
   }, [addSuccess, editSuccess, addError, editError]);
 
