@@ -1,11 +1,11 @@
 import { useLocation } from "react-router-dom";
-import { I_Todo } from "../state/todosSlice/Todos";
 import { useCallback, useMemo } from "react";
+import { T_TaskItem } from "../state/tasks/task.type";
 
-export const useFilterData = (data: I_Todo[]) => {
+export const useFilterData = (data: T_TaskItem[]) => {
   const { pathname } = useLocation();
   const filterData = useCallback(
-    (data?: I_Todo[]) => {
+    (data?: T_TaskItem[]) => {
       if (data) {
         switch (pathname) {
           case "/":
