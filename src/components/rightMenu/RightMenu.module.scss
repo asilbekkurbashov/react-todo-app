@@ -1,151 +1,151 @@
 // right menu
 .rightMenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom:0 ;
-    width: 300px;
-    padding: 5px 20px;
-    padding-top: 20px;
-    background-color: var(--menu-bg-default);
-    z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  overflow: auto;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 5px 20px;
+  padding-top: 20px;
+  background-color: var(--menu-bg-default);
+  z-index: 1;
 
-    &.rightMenuActive{
-        right: 0;
-    }
+  &.rightMenuActive {
+    right: 0;
+  }
 }
 
-.user{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--major-text-default);
-    height: 60px;
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--major-text-default);
+  height: 60px;
 
-    h2 {
-        margin-bottom: 0;
-    }
+  h2 {
+    margin-bottom: 0;
+  }
 }
 
 .user svg {
-    display: flex;
-    font-size: 40px;
+  display: flex;
+  font-size: 40px;
 }
 
 .mode {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 20px;
-    padding: 20px 0;
-    color: var(--major-text-default);
-    p{
-        margin-bottom: 0;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 20px 0;
+  color: var(--major-text-default);
+  p {
+    margin-bottom: 0;
+  }
 }
 
-.allTasks{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-    margin-bottom: 5px;
-    color: var(--major-text-default);
-    p{
-        margin-bottom: 0;
-    }
+.allTasks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: var(--major-text-default);
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .rangeBlock {
-    height: 10px;
-    width: 100%;
-    background-color: var(--range-bg-default);
-    border-radius: 10px;
+  height: 10px;
+  width: 100%;
+  background-color: var(--range-bg-default);
+  border-radius: 10px;
 }
 
 .range {
-    height: 10px;
-    width: 0 * 100%;
-    background-color: var(--add-button);
-    border-radius: 10px;
+  height: 10px;
+  width: 0 * 100%;
+  background-color: var(--add-button);
+  border-radius: 10px;
 }
 
 .modePort {
-    height: 25px;
-    width: 50px;
-    border: none;
-    padding: 1px;
-    padding-top: 2px;
-    background-color: rgba(0,0,0 ,.25);
-    border-radius: 20px;
-    overflow: hidden;
-    transition:background-color 200ms ;
-    cursor: pointer;
-    &:hover {
-      background-color: rgba(0,0,0 ,.45);      
-    }
+  height: 25px;
+  width: 50px;
+  border: none;
+  padding: 1px;
+  padding-top: 2px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: background-color 200ms;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.45);
+  }
 }
 
-.optionMode{
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    min-width: 90px;
+.optionMode {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 90px;
+  transform: translateX(-15px);
+  font-size: 14px;
+  transition: transform 0.4s ease-in-out;
+
+  &.optionDarkMode {
+    transform: translateX(6px);
+  }
+
+  &.optionLightMode {
     transform: translateX(-15px);
-    font-size: 14px;
-    transition: transform .4s ease-in-out;
-
-    &.optionDarkMode {
-        transform: translateX(6px);
-    }
-
-    &.optionLightMode {
-        transform: translateX(-15px)
-    }
+  }
 }
 
 .darkMode {
-    display: flex;
-    color: #fff;
+  display: flex;
+  color: #fff;
 }
 
 .circle {
-    display: flex;
-    width: 21px;
-    height: 21px;
-    border-radius: 50%;
-    background-color: #fff;
+  display: flex;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background-color: #fff;
 }
 
-.lightMode{
-    display: flex;
-    color: gold;
+.lightMode {
+  display: flex;
+  color: gold;
 }
 
-.made{
-    margin: 0 20px;
-    margin-bottom: 17px;
+.made {
+  margin: 0 20px;
+  margin-bottom: 17px;
 }
 
-.by{
-    text-align: center;
-    background-color: var(--directory-bg-default);
-    border-radius: 10px;
+.by {
+  text-align: center;
+  background-color: var(--directory-bg-default);
+  border-radius: 10px;
+  a {
+    padding: 8px 0px;
+    color: var(--directory-text-default);
+  }
 }
 
-.by a {
-    padding: 8px 0;
-    color: var(--directory-text-default) ;
-}
-
-@media (max-width: 1200px){
-    .rightMenu {
-        right: -320px;
-    }
+@media (max-width: 1200px) {
+  .rightMenu {
+    right: -320px;
+  }
 }

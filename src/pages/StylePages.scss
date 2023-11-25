@@ -1,7 +1,7 @@
 section {
   position: relative;
   margin-top: 40px;
-  min-height: 700px;
+  min-height: 600px;
 
   .page {
     font-size: 30px;
@@ -33,9 +33,11 @@ section {
 }
 
 .todo {
-  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   border-radius: 20px;
-  padding: 20px;
+  padding: 15px;
   background-color: var(--menu-bg-default);
   position: relative;
 }
@@ -55,24 +57,26 @@ section {
 .title {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 0;
   color: var(--text-default);
 }
 
 .text {
   font-size: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 0;
   color: var(--major-text-default);
 }
 
 .date {
   display: flex;
   align-items: center;
+  align-items: center;
   gap: 10px;
   font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   color: var(--major-text-default);
-  padding-bottom: 10px;
-  margin-bottom: 25px;
+  padding-bottom: 15px;
   border-bottom: 1px dashed var(--major-text-default);
 
   p {

@@ -8,13 +8,8 @@
   margin:  0 300px;
   background-color: var(--main-bg-default);
   padding: 20px;
+  padding-bottom: 80px;
   box-shadow: inset 3px 0px 50px -20px rgba(0, 0, 0, 0.5);
-}
-
-.main {
-  position: relative;
-  min-height: 80vh;
-  padding-bottom: 60px;
 }
 
 //footer
@@ -23,8 +18,8 @@
   bottom: 20px;
   border: none;
   border-radius: 20px;
-  left: 10px;
-  right: 10px;
+  left: 20px;
+  right: 20px;
   padding: 8px;
   color: var(--major-text-default);
   background-color: var(--menu-bg-default);
