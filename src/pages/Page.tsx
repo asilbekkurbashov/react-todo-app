@@ -17,7 +17,7 @@ export function Page() {
     <section className="section">
       <p className="page">{menuLabel} ({filterData ? filterData.length : 0} {t('tasks')})</p>
       <div>
-        {data.length ? (
+        {filterData && filterData.length ? (
           <div className="todos">
             {isLoading ? (
               <h1>Loading</h1>
