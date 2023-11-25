@@ -43,6 +43,7 @@ function ModalComponent() {
   const handleCancel = () => {
     dispatch(SharedSliceActions.setIsModal(false));
     dispatch(TaskActions.setTask(null));
+    setDateValue('')
     form.resetFields();
   };
 
