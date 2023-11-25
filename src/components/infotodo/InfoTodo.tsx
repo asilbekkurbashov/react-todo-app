@@ -6,17 +6,19 @@ import Button from "../../shared/ui/Button/Button";
 import { MdToday } from "react-icons/md";
 import { AiFillStar, AiFillDelete } from "react-icons/ai";
 import { HiDotsVertical } from "react-icons/hi";
-import { FaCheck,FaXmark } from "react-icons/fa6";
+import { FaCheck, FaXmark } from "react-icons/fa6";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useTranslation } from "react-i18next";
-import { toggleCompleted } from "../../state/todosSlice/Todos";
 import { useDebounce } from "../../hooks/useDebounce";
-import { useDeleteTaskMutation } from "../../state/tasks/task.api";
-import {TaskActions} from '../../state/tasks/task.slice'
+import {
+  useDeleteTaskMutation,
+  useEditTaskCompletedMutation,
+  useEditTaskImportantMutation,
+} from "../../state/tasks/task.api";
+import { TaskActions } from "../../state/tasks/task.slice";
 import { SharedSliceActions } from "../../state/shared/sharedSlice";
 import { T_TaskItem } from "../../state/tasks/task.type";
-
 
 interface Props {
   data?: T_TaskItem[];
@@ -25,28 +27,30 @@ interface Props {
 function InfoTodo(props: Props) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const {search} = useAppSelector(state => state.SharedSliceReducer)
+  const { search } = useAppSelector((state) => state.SharedSliceReducer);
   const [deleteTask] = useDeleteTaskMutation();
+  const [editImportant] = useEditTaskImportantMutation();
+  const [editCompleted] = useEditTaskCompletedMutation();
   const { data } = props;
 
-  const condirmDelete = async (id:string) => {
+  const condirmDelete = async (id: string) => {
     await deleteTask(id);
-    message.success(t('successDeleted'))
-  }
+    message.success(t("successDeleted"));
+  };
 
-  const toggleCom = (elem: T_TaskItem) => {
+  const toggleCompleted = async (elem: T_TaskItem) => {
     const body = { ...elem, completed: !elem.completed };
-    dispatch(toggleCompleted(body));
+    await editCompleted(body);
   };
-  const toggleImp = (elem: T_TaskItem) => {
+  const toggleImportant = async (elem: T_TaskItem) => {
     const body = { ...elem, important: !elem.important };
-    dispatch(toggleCompleted(body));
+    await editImportant(body);
   };
 
-  const editTask = (elem:T_TaskItem) => {
-    dispatch(TaskActions.setTask(elem))
-    dispatch(SharedSliceActions.setIsModal(true))
-  }
+  const editTask = (elem: T_TaskItem) => {
+    dispatch(TaskActions.setTask(elem));
+    dispatch(SharedSliceActions.setIsModal(true));
+  };
 
   const debounce = useDebounce<string>(search.toLowerCase());
   const searchedData = data?.filter((el) =>
@@ -67,22 +71,22 @@ function InfoTodo(props: Props) {
           </div>
           <div className="option">
             <Button
-              onClick={() => toggleCom(elem)}
+              onClick={() => toggleCompleted(elem)}
               class_btn="for_laptop"
               type_btn={elem.completed ? "completed" : "uncompleted"}
             >
-              {elem.completed ? t('completed') : t('uncompleted')}
+              {elem.completed ? t("completed") : t("uncompleted")}
             </Button>
             <Button
-              onClick={() => toggleCom(elem)}
-              class_btn = 'for_mobile'
+              onClick={() => toggleCompleted(elem)}
+              class_btn="for_mobile"
               type_btn={elem.completed ? "completed" : "uncompleted"}
             >
-              {elem.completed ? <FaCheck/> : <FaXmark/>}
+              {elem.completed ? <FaCheck /> : <FaXmark />}
             </Button>
             <div className="rightOption">
               <span
-                onClick={() => toggleImp(elem)}
+                onClick={() => toggleImportant(elem)}
                 className={elem.important ? "important" : ""}
               >
                 <AiFillStar />
@@ -90,9 +94,9 @@ function InfoTodo(props: Props) {
               <Popconfirm
                 className="delete"
                 title={elem.title}
-                description={t('sure')}
-                okText={t('Yes')}
-                cancelText={t('No')}
+                description={t("sure")}
+                okText={t("Yes")}
+                cancelText={t("No")}
                 onConfirm={() => condirmDelete(elem.id)}
               >
                 <span>
@@ -109,7 +113,7 @@ function InfoTodo(props: Props) {
     })
   ) : (
     <div className="not">
-      <p>{t('Not found')}</p>
+      <p>{t("Not found")}</p>
     </div>
   );
 }

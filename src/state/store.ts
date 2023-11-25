@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { TodoReducer} from './todosSlice/Todos'
 import { ThemeReducer } from './themeSlice/ThemeSlice'
 import { TaskReducer} from './tasks/task.slice'
 import { SharedSliceReducer} from './shared/sharedSlice'
@@ -8,7 +7,6 @@ import { rtkAPI } from './index.api'
 
 export const store = configureStore({
   reducer: {
-    TodoReducer,
     ThemeReducer,
     TaskReducer,
     SharedSliceReducer,

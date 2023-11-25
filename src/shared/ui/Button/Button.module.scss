@@ -13,10 +13,12 @@
 
     &.completed {
         background-color: #a7f3d0;
+        color: #065f46;
     }
 
     &.uncompleted {
         background-color: #fde68a;
+        color: #92400e;
     }
 }
 

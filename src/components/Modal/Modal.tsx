@@ -10,7 +10,6 @@ import {
   Checkbox,
   message,
 } from "antd";
-import { I_Todo } from "../../state/todosSlice/Todos";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
 import { useTranslation } from "react-i18next";
 import {
@@ -20,12 +19,16 @@ import {
 import { SharedSliceActions } from "../../state/shared/sharedSlice";
 import { TaskActions } from "../../state/tasks/task.slice";
 import dayjs from "dayjs";
+import { dateFormat } from "../../shared/data/data";
+import { T_TaskItem } from "../../state/tasks/task.type";
 
 function ModalComponent() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { isModal } = useAppSelector((state) => state.SharedSliceReducer);
   const { task } = useAppSelector((state) => state.TaskReducer);
+  const [dateValue, setDateValue] = useState("");
+  const [form] = Form.useForm();
 
   const [
     addTask,
@@ -43,16 +46,13 @@ function ModalComponent() {
     form.resetFields();
   };
 
-  const [dateValue, setDateValue] = useState("");
-  const [form] = Form.useForm();
-
   const onChange: DatePickerProps["onChange"] = (_, dateString) => {
     setDateValue(dateString);
   };
 
-  const onFinish = async (value: I_Todo) => {
+  const onFinish = async (value: T_TaskItem) => {
     if (task) {
-      await editTask({ ...value, date: dateValue, id: value.id });
+      await editTask({ ...value, date: dateValue, id: task.id });
     } else {
       await addTask({ ...value, date: dateValue });
     }
@@ -68,8 +68,8 @@ function ModalComponent() {
   }, [addLoading, editLoading]);
 
   useEffect(() => {
-    if (addSuccess) return message.success(t("successAdd"));
     if (editSuccess) return message.success(t("successEdit"));
+    if (addSuccess) return message.success(t("successAdd"));
     if (addError || editError) return message.error(t("errorTask"));
   }, [addSuccess, editSuccess, addError, editError]);
 
@@ -77,7 +77,7 @@ function ModalComponent() {
     if (task) {
       form.setFieldsValue({
         ...task,
-        date: dayjs(task.date),
+        date: dayjs(task.date, dateFormat),
       });
     }
   }, [form, task]);

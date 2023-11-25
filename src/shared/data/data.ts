@@ -20,3 +20,4 @@ export const time = () => {
 
     return `${year}, ${months[month]} ${day}`
 }
+export const dateFormat = 'YYYY-MM-DD';

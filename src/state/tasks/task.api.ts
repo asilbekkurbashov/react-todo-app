@@ -26,6 +26,22 @@ export const tasksAPI = rtkAPI.injectEndpoints({
             }),
             invalidatesTags: ['Todos']
         }),
+        editTaskImportant: builder.mutation<any, T_TaskItem>({
+            query: (body) => ({
+                url: `todos/${body.id}`,
+                method: 'PUT',
+                body
+            }),
+            invalidatesTags: ['Todos']
+        }),
+        editTaskCompleted: builder.mutation<any, T_TaskItem>({
+            query: (body) => ({
+                url: `todos/${body.id}`,
+                method: 'PUT',
+                body
+            }),
+            invalidatesTags: ['Todos']
+        }),
         deleteTask: builder.mutation<void, string>({
             query: (id) => ({
                 url: `todos/${id}`,
@@ -36,4 +52,4 @@ export const tasksAPI = rtkAPI.injectEndpoints({
     })
 })
 
-export const { useGetTasksQuery ,useAddTaskMutation, useDeleteTaskMutation, useEditTaskMutation} = tasksAPI
+export const { useGetTasksQuery ,useAddTaskMutation,useEditTaskCompletedMutation ,useDeleteTaskMutation, useEditTaskMutation, useEditTaskImportantMutation} = tasksAPI
