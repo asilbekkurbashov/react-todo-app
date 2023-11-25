@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../shared/api/url.config";
-import { I_Todo } from "./todosSlice/Todos";
+import { T_TaskItem } from "./tasks/task.type";
 
 export const rtkAPI = createApi({
   reducerPath: "rtkAPI",
   tagTypes: ['Todos'],
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   endpoints: (builder) => ({
-    default: builder.query<I_Todo[], void>({
+    default: builder.query<T_TaskItem[], void>({
       query: () => ({
         url: "todos",
         method: "GET",
