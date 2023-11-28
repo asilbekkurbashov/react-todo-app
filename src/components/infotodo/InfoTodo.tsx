@@ -1,6 +1,6 @@
 import "../../pages/StylePages.scss";
 
-import { Popconfirm, message } from "antd";
+import { message } from "antd";
 import Button from "../../shared/ui/Button/Button";
 //icons
 import { MdToday } from "react-icons/md";
@@ -19,6 +19,7 @@ import {
 import { TaskActions } from "../../state/tasks/task.slice";
 import { SharedSliceActions } from "../../state/shared/sharedSlice";
 import { T_TaskItem } from "../../state/tasks/task.type";
+import { UiPopConfirm } from "../../shared/ui/uiPopConfirm/UiPopConfirm";
 
 interface Props {
   data?: T_TaskItem[];
@@ -91,7 +92,7 @@ function InfoTodo(props: Props) {
               >
                 <AiFillStar />
               </span>
-              <Popconfirm
+              <UiPopConfirm
                 className="delete"
                 title={elem.title}
                 description={t("sure")}
@@ -102,7 +103,7 @@ function InfoTodo(props: Props) {
                 <span>
                   <AiFillDelete />
                 </span>
-              </Popconfirm>
+              </UiPopConfirm>
               <span onClick={() => editTask(elem)}>
                 <HiDotsVertical />
               </span>
