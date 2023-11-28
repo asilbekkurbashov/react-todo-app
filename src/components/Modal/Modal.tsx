@@ -3,11 +3,7 @@ import {
   Button,
   Modal,
   Form,
-  Input,
-  Select,
-  DatePicker,
   DatePickerProps,
-  Checkbox,
   message,
 } from "antd";
 import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
@@ -21,6 +17,7 @@ import { TaskActions } from "../../state/tasks/task.slice";
 import dayjs from "dayjs";
 import { dateFormat } from "../../shared/data/data";
 import { T_TaskItem } from "../../state/tasks/task.type";
+import {UiTextarea,UiCheckbox, UiInput,UiDatePicker ,UiSelect} from '../../shared/ui'
 
 function ModalComponent() {
   const { t } = useTranslation();
@@ -30,15 +27,11 @@ function ModalComponent() {
   const [dateValue, setDateValue] = useState("");
   const [form] = Form.useForm();
 
-  const [
-    addTask,
-    { isSuccess: addSuccess, isError: addError },
-  ] = useAddTaskMutation();
+  const [addTask, { isSuccess: addSuccess, isError: addError }] =
+    useAddTaskMutation();
 
-  const [
-    editTask,
-    { isSuccess: editSuccess, isError: editError },
-  ] = useEditTaskMutation();
+  const [editTask, { isSuccess: editSuccess, isError: editError }] =
+    useEditTaskMutation();
 
   const handleCancel = () => {
     dispatch(SharedSliceActions.setIsModal(false));
@@ -100,17 +93,17 @@ function ModalComponent() {
             },
           ]}
         >
-          <Input placeholder={t("title placeholder")} className="inputName" />
+          <UiInput placeholder={t("title placeholder")} className="inputName" />
         </Form.Item>
         <Form.Item
           name="date"
           label={t("Date")}
           rules={[{ required: true, message: t("Please") + " " + t("Date") }]}
         >
-          <DatePicker
+          <UiDatePicker
             placeholder={t("date placeholder")}
             className="datePicker"
-            name="date"
+            format={dateFormat}
             onChange={onChange}
           />
         </Form.Item>
@@ -125,7 +118,7 @@ function ModalComponent() {
             },
           ]}
         >
-          <Input.TextArea
+          <UiTextarea
             className="textarea"
             placeholder={t("text placeholder")}
           />
@@ -137,7 +130,7 @@ function ModalComponent() {
             { required: true, message: t("Please") + " " + t("Directory") },
           ]}
         >
-          <Select
+          <UiSelect
             placeholder={t("directory placeholder")}
             options={[
               { value: "main", label: "main" },
@@ -150,14 +143,14 @@ function ModalComponent() {
           name="important"
           valuePropName="checked"
         >
-          <Checkbox className="checkbox">{t("Mark as important")}</Checkbox>
+          <UiCheckbox>{t("Mark as important")}</UiCheckbox>
         </Form.Item>
         <Form.Item
           style={{ height: "20px" }}
           name="completed"
           valuePropName="checked"
         >
-          <Checkbox className="checkbox">{t("Mark as completed")}</Checkbox>
+          <UiCheckbox>{t("Mark as completed")}</UiCheckbox>
         </Form.Item>
         <Form.Item>
           <Button block className="btn" htmlType="submit">
