@@ -71,7 +71,7 @@ function RightMenu() {
       <div className={styles.made}>
         <div className={styles.by}>
           <Link to="https://t.me/asilbekkurbashov">
-            {t("Made by")} Asilbek Kurbashov
+            {t("Made by")} Asilbek 
           </Link>
         </div>
       </div>
