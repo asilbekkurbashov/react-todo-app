@@ -4,46 +4,28 @@ import MainPage from "../../../components/mainPage/MainPage";
 import RightMenu from "../../../components/rightMenu/RightMenu";
 import ModalComponent from "../../../components/Modal/Modal";
 import { useResponsive } from "../../../hooks/useResponsive";
-import { Drawer } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../hooks/useRedux";
+import { useAppSelector } from "../../../hooks/useRedux";
 import { SharedSliceActions } from "../../../state/shared/sharedSlice";
+import UiDrawer from "../../../shared/ui/uiDrawer/UiDrawer";
 
 function RootLayout() {
   const { drawerLeft, drawerRight } = useAppSelector(
     (state) => state.SharedSliceReducer
   );
-  const dispatch = useAppDispatch();
   const { setDrawerLeft, setDrawerRight } = SharedSliceActions;
   const { isMobile } = useResponsive(1200);
   return (
     <div>
-      <Drawer
-        placement="left"
-        open={drawerLeft}
-        closable={false}
-        onClose={() => dispatch(setDrawerLeft(false))}
-        width={300}
-        mask={isMobile}
-        bodyStyle={{ backgroundColor: "var(--menu-bg-default)" }}
-      >
+      <UiDrawer place="left" drawer={drawerLeft} setDrawer={setDrawerLeft}>
         <LeftMenu />
-      </Drawer>
-
+      </UiDrawer>
       {!isMobile && <LeftMenu />}
+
       <MainPage />
 
-      <Drawer
-        placement="right"
-        open={drawerRight}
-        closable={false}
-        onClose={() => dispatch(setDrawerRight(false))}
-        width={300}
-        mask={isMobile}
-        bodyStyle={{ backgroundColor: "var(--menu-bg-default)" }}
-      >
+      <UiDrawer place="right" drawer={drawerRight} setDrawer={setDrawerRight}>
         <RightMenu />
-      </Drawer>
-
+      </UiDrawer>
       {!isMobile && <RightMenu />}
 
       <ModalComponent />
