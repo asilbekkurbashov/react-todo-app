@@ -20,7 +20,7 @@ function RootLayout() {
         <LeftMenu />
       </UiDrawer>
       {!isMobile && <LeftMenu />}
-
+      
       <MainPage />
 
       <UiDrawer place="right" drawer={drawerRight} setDrawer={setDrawerRight}>
